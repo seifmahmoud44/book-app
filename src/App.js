@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import "./App.css";
+import AddForm from "./component/AddForm";
+import BookDetails from "./component/BookDetails";
+import BookPreview from "./component/BookPreview";
 
 function App() {
+  const state = useSelector((state) => state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {state.erorr && (
+        <div class="alert alert-danger" role="alert">
+          faild to fetch data
+        </div>
+      )}
+      <div className="container text-center">
+        <AddForm />
+        <div className="row">
+          <div className="col-6">
+            <BookDetails />
+          </div>
+          <div className="col-6">
+            <BookPreview />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
